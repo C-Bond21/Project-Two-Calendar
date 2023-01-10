@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+:root {
+    --main-color: rgb(0, 255, 136);
+    --main-color-alpha: rgba(0, 255, 136, 0.3);
+    --pdg: 1em;
+}
+
+#wrapper {
+    display: grid;
+    justify-content: center;
+    margin-top: var(--pdg);
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-family: sans-serif;;
+    grid-template-areas: 
+        "header header header header header header header"
+        "weekday weekday weekday weekday weekday weekday weekday"
+        "day day day day day day day"
+        "day day day day day day day"
+        "day day day day day day day"
+        "day day day day day day day"
+        "day day day day day day day"
+        "day day day day day day day";
+    grid-auto-flow: dense;
+    box-shadow: 0 0 10px var(--main-color-alpha);
+}
+
+#calendar > div {
+    padding: var(--pdg); 
+}
+
+.cell {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .2s;
+    border: 2px solid transparent;
+}
+
+.date-text {
+    grid-column: span 4;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.button {
+    text-align: center;
+    cursor: pointer;
+}
+
+.cell--unselectable {
+    grid-area: weekday;
+    grid-column: span 1;
+    background-color: var(--main-color);
+}
+
+.cell:not(.cell--unselectable):hover {
+    background-color: var(--main-color-alpha);
+}
+
+.today {
+    border-color: var(--main-color);
+}
